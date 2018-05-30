@@ -1,16 +1,15 @@
-const Stage = require("telegraf/stage");
-const WizardScene = require("telegraf/scenes/wizard");
-const Components = require("./components");
-const Markup = require("telegraf/markup");
-const models = require("../models");
+const Stage = require('telegraf/stage');
+const WizardScene = require('telegraf/scenes/wizard');
+const Components = require('./components');
+const Markup = require('telegraf/markup');
+const models = require('../models');
 const types = require('./types');
-const session = require("telegraf/session");
-const lodash = require("lodash");
-const message = require("./message");
-const moment = require("moment");
+const session = require('telegraf/session');
+const lodash = require('lodash');
+const message = require('./message');
+const moment = require('moment');
 
 module.exports = (bot) => {
-
   // create scene about new spot
   const createSpotScene = newCreateSpotScene();
   // added command that cancel scene
@@ -88,7 +87,7 @@ module.exports = (bot) => {
   bot.hears(message.CREATE_SPOT, async (ctx) => {
     const spot = await models.Spot.getByFromId(ctx.from.id);
     if (!spot) {
-      ctx.scene.enter("create");
+      ctx.scene.enter('create');
     } else {
       ctx.reply(message.SPOT_ALREADY_CREATED);
       await Components.sendMatch(ctx, spot);
@@ -195,7 +194,7 @@ function newFindSpotScene() {
 
 function newCreateSpotScene() {
   return new WizardScene(
-    "create",
+    'create',
 
     /**
      * initialize spot
@@ -230,7 +229,7 @@ function newCreateSpotScene() {
      * insert spot time
      */
     async (ctx) => {
-      const time = moment(ctx.message.text, "DD.MM.YY HH:mm", true);
+      const time = moment(ctx.message.text, 'DD.MM.YY HH:mm', true);
       if (time.isValid()) {
         if (time.diff(moment()) < 0) {
           ctx.reply(message.CANNOT_USE_PAST_TIME);
@@ -341,7 +340,7 @@ function newCreateSpotScene() {
           message.SPOT_HAS_BEEN_CREATEED,
           Markup.inlineKeyboard([
             Markup.urlButton(
-              "Выбрать группу",
+              'Выбрать группу',
               `https://telegram.me/SpotBBot?startgroup=${spot.hash}`
             )
           ]).extra()

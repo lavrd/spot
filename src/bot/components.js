@@ -1,7 +1,7 @@
-const bot = require("./bot");
-const Markup = require("telegraf/markup");
-const message = require("./message");
-const lodash = require("lodash");
+const bot = require('./bot');
+const Markup = require('telegraf/markup');
+const message = require('./message');
+const lodash = require('lodash');
 const types = require('./types');
 
 class Components {
@@ -23,13 +23,13 @@ class Components {
   static sendSpotInfo(ctx, spot, forFind) {
     return ctx.replyWithMarkdown(
       message.SPOT_INFO(spot, forFind),
-      Markup.inlineKeyboard([Markup.callbackButton("🤙🏻 Добавиться", `add ${spot.hash}`)])
+      Markup.inlineKeyboard([Markup.callbackButton('🤙🏻 Добавиться', `add ${spot.hash}`)])
         .extra()
     );
   }
 
   static cancelSceneKeyboard(ctx) {
-    return ctx.reply("Вы можете отменить действие нажатием на крестик", Markup.keyboard([
+    return ctx.reply('Вы можете отменить действие нажатием на крестик', Markup.keyboard([
       [message.CANCEL]
     ]).resize().extra());
   }
@@ -37,7 +37,7 @@ class Components {
   static spbMetroTreesKeboard(ctx) {
     const keyboard = lodash.map(types.SPB_METRO_TREES, (t) => Markup.callbackButton(t, t));
     return ctx.reply(
-      "Выберите ветку метро",
+      'Выберите ветку метро',
       Markup.inlineKeyboard(keyboard).extra()
     );
   }
@@ -56,22 +56,22 @@ class Components {
     });
 
     return ctx.reply(
-      "Выберите станцию метро",
+      'Выберите станцию метро',
       Markup.inlineKeyboard(keyboard).resize().extra()
     );
   }
 
   static mainKeyboard(ctx) {
-    return ctx.reply("Выберите действие", Markup.keyboard([
+    return ctx.reply('Выберите действие', Markup.keyboard([
       [message.FIND_SPOTS, message.CREATE_SPOT],
-      [message.CURRENT_SPOT, message.GLOBAL_FIND, message.REMOVE_ACTIVE_SPOT],
+      [message.CURRENT_SPOT, message.GLOBAL_FIND, message.REMOVE_ACTIVE_SPOT]
     ]).resize().extra());
   }
 
   static sportTypesKeyboard(ctx) {
     const keyboard = lodash.map(types.SPORT_TYPES, (s) => Markup.callbackButton(s, s));
     return ctx.reply(
-      "Введите тип матча",
+      'Введите тип матча',
       Markup.inlineKeyboard(keyboard).extra()
     );
   }

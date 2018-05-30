@@ -1,16 +1,7 @@
 {
-  "name": "spot",
-  "version": "1.0.0",
-  "private": true,
-  "engines": {
-    "node": ">=8.6.0"
-  },
   "scripts": {
     "pro": "NODE_PATH=./src NODE_ENV=pro node ./src/app.js",
-    "dev": "NODE_PATH=./src NODE_ENV=dev node ./src/app.js",
-    "watch": "./node_modules/.bin/esw --watch",
-    "lint": "./node_modules/.bin/esw",
-    "test": "NODE_PATH=./src NODE_ENV=test node ./src/app.js"
+    "dev": "NODE_PATH=./src NODE_ENV=dev node ./src/app.js"
   },
   "dependencies": {
     "lodash": "^4.17.4",
@@ -20,11 +11,5 @@
     "nconf": "^0.10.0",
     "telegraf": "^3.17.7",
     "winston": "^2.4.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.18.2",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-watch": "^3.1.3"
   }
 }

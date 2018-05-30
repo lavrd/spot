@@ -1,9 +1,9 @@
-const Telegraf = require("telegraf");
-const config = require("../config");
-const utils = require("../utils");
+const Telegraf = require('telegraf');
+const config = require('../config');
+const utils = require('../utils');
 
 const logger = utils.logger(module);
-const token = config.get("telegram:token");
+const token = config.get('telegram:token');
 const bot = new Telegraf(token);
 
 // export here because component.js import 'index.js'
@@ -24,13 +24,13 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 // import here because component.js import 'index.js'
-const Components = require("./components");
+const Components = require('./components');
 bot.start((ctx) => {
   Components.mainKeyboard(ctx);
 });
 
-require("./group")(bot);
-require("./user")(bot);
+require('./group')(bot);
+require('./user')(bot);
 
 bot.startPolling();
-logger.info("development start: bot starting polling updates");
+logger.info('development start: bot starting polling updates');

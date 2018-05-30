@@ -1,14 +1,13 @@
 {
   "telegram": {
-    "token": "334807039:AAF9UDVSl2BVdnLPYX4XxeIvZ4bWR_2FCUY"
+    "token": "token"
   },
   "database": {
     "uri": "mongodb://localhost/spot",
-    "testUri": "mongodb://localhost/spotTest",
     "options": {
       "keepAlive": 1
     },
-    "debug": false
+    "debug": true
   },
   "manager": {
     "delay": 15000

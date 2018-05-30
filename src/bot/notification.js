@@ -1,9 +1,9 @@
-const bot = require("./bot");
+const bot = require('./bot');
 const models = require('../models');
 const Components = require('./components');
 
 const send = async (chat, text) => {
-  return chat && await bot.telegram.sendMessage(chat, text, {parse_mode: "Markdown"});
+  return chat && await bot.telegram.sendMessage(chat, text, {parse_mode: 'Markdown'});
 };
 
 const notify = async (spot, message, nextStatus) => {

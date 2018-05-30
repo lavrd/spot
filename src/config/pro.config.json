@@ -1,6 +1,6 @@
 {
   "telegram": {
-    "token": "334807039:AAF9UDVSl2BVdnLPYX4XxeIvZ4bWR_2FCUY"
+    "token": "token"
   },
   "database": {
     "uri": "mongodb://mongo/spot",

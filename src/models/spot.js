@@ -1,7 +1,7 @@
-const utils = require("../utils");
+const utils = require('../utils');
 // import '../bot/types' instead of '../bot' becouse starting before than
-const types = require("../bot/types");
-const lodash = require("lodash");
+const types = require('../bot/types');
+const lodash = require('lodash');
 
 const NOTIFY_STATUS = types.NOTIFY_STATUS;
 const SPOT_STATUS = types.SPOT_STATUS;
@@ -41,7 +41,7 @@ let schema = new utils.mongoose.Schema({
   }
 });
 
-const Spot = utils.mongoose.model("spot", schema);
+const Spot = utils.mongoose.model('spot', schema);
 
 Spot.removeSpot = async (hash) => {
   return await Spot.findOneAndRemove({hash: hash});
@@ -51,7 +51,7 @@ Spot.removePlayer = async (hash, from) => {
   return await Spot.findOneAndUpdate(
     {hash: hash},
     {
-      $pull: {"players": from},
+      $pull: {'players': from},
       status: SPOT_STATUS.OPEN
     },
     {
@@ -111,7 +111,7 @@ Spot.addPlayer = async (hash, from) => {
     return await Spot.findOneAndUpdate(
       {hash: hash},
       {
-        $push: {"players": from},
+        $push: {'players': from},
         status: isFull ? SPOT_STATUS.CLOSED : SPOT_STATUS.OPEN
       }
     );

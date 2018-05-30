@@ -1,13 +1,13 @@
-const models = require("../models");
-const Components = require("./components");
+const models = require('../models');
+const Components = require('./components');
 const message = require('./message');
-const Markup = require("telegraf/markup");
+const Markup = require('telegraf/markup');
 
 const spots = {};
 
 module.exports = (bot) => {
   bot.hears(/start@SpotBBot (.+)/, async (ctx) => {
-    if (ctx.chat.type === "group") {
+    if (ctx.chat.type === 'group') {
       const {match} = ctx;
       const hash = match[1];
       const spot = await models.Spot.getByHash(hash);
@@ -19,7 +19,7 @@ module.exports = (bot) => {
     }
   });
 
-  bot.on("contact", async (ctx) => {
+  bot.on('contact', async (ctx) => {
     const {from} = ctx;
     Components.mainKeyboard(ctx);
     if (ctx.message.contact) {
@@ -29,7 +29,7 @@ module.exports = (bot) => {
         await bot.telegram.sendMessage(
           groupId,
           message.NEW_PLAYER_WANTS_TO_ADD,
-          {parse_mode: "Markdown"}
+          {parse_mode: 'Markdown'}
         );
         await bot.telegram.sendContact(groupId, phone, `${from.first_name} ${from.last_name}`);
       }
@@ -64,7 +64,7 @@ module.exports = (bot) => {
   });
 
   bot.action(/add (.+)/, async (ctx) => {
-    if (ctx.chat.type === "group") {
+    if (ctx.chat.type === 'group') {
       const {match, from} = ctx;
       const groupId = ctx.chat.id;
       const hash = match[1];
@@ -76,17 +76,17 @@ module.exports = (bot) => {
         bot.telegram.sendMessage(groupId, str);
       }
     }
-    if (ctx.chat.type === "private") {
+    if (ctx.chat.type === 'private') {
       const {match, from} = ctx;
       const hash = match[1];
       const currentSpot = await models.Spot.getCurrentSpot(from.id);
       spots[from.id] = await models.Spot.getByHash(hash);
       if (!currentSpot) {
         return ctx.replyWithMarkdown(
-          "Чтобы добавить вас в матч, необходимо отправить ваш телефонный номер создателю матча.\n" +
-          "Нажмите на кнопку *\"Отправить контакт\"*, если согласны.",
+          'Чтобы добавить вас в матч, необходимо отправить ваш телефонный номер создателю матча.\n' +
+          'Нажмите на кнопку *"Отправить контакт"*, если согласны.',
           Markup.keyboard([
-            Markup.contactRequestButton("Отправить контакт")
+            Markup.contactRequestButton('Отправить контакт')
           ]).resize().extra()
         );
       } else {
