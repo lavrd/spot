@@ -4,7 +4,7 @@
     "dev": "NODE_PATH=./src NODE_ENV=dev node ./src/app.js"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": ">=4.17.11",
     "moment": "^2.21.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.0.1",
